@@ -15,6 +15,7 @@ Una vez instalado ejecutar el servidor ollama con el siguiente comando
 ````bash
 ollama serve
 ````
+Abrir otra terminal
 
 ## 3. Descargar algún modelo
 
@@ -40,4 +41,33 @@ git push -u origin main
  ````bash
 git config --global user.email santiago.varelah@ecci.edu.co
 git config --gloabal user.name "Santiago-2
+````
+
+## 4.1 Prueba de requeste a las API REST
+
+Para relaizar uan paeticióna olla se sigue la siguiente estructura
+
+````
+curl -X POST http://localhost:11434/api/generate -d '{
+  "model": "tinyllama",
+  "prompt": "Why is the sky blue?"
+}'
+````
+
+### 4.2 Guaradar en un archivo
+
+````
+curl -X POST http://localhost:11434/api/generate -d '{
+  "model": "tinyllama",
+  "prompt": "Why is the sky blue?"
+}' -o salida.md
+````
+
+### 4.3 Sin formato stream
+````
+curl http://localhost:11434/api/generate -d '{
+  "model": "tinyllama",
+  "prompt": "Why is the sky blue?",
+  "stream": false
+}'
 ````
