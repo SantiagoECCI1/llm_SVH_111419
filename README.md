@@ -71,3 +71,52 @@ curl http://localhost:11434/api/generate -d '{
   "stream": false
 }'
 ````
+
+### 4.4 Reducir la alucinación 
+temperature : 0; entre 0 y 1
+
+````bash
+curl http://localhost:11434/api/generate -d '{
+  "model": "codellama:code",
+  "prompt": "def compute_gcd(a, b):",
+  "suffix": "    return result",
+  "options": {
+    "temperature": 0
+  },
+  "stream": false
+}'
+````
+
+
+=======================
+### Objetivos 30/08/24
+Usar Groq
+
+Consumir api por medio de python
+
+## 5 Realizar un request a groq
+
+Realizar consultas a groq
+
+````bash
+curl "https://api.groq.com/openai/v1/chat/completions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${GROQ_API_KEY}" \
+  -d '{
+         "messages": [
+           {
+             "role": "user",
+             "content": "¿Porque el cielo es azul?"
+           }
+         ],
+         "model": "gemma-7b-it",
+         "stream": false
+       }'
+````
+
+Verificar la variable de entorno 
+
+````
+echo $GROQ_API_KEY
+````
